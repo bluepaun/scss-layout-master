@@ -1,0 +1,31 @@
+.container {
+    display: flex;
+    justify-content: flex-start;
+    height: 100vh;
+    align-items: center;
+    flex-direction: row;
+    /* flex-wrap: wrap-reverse; */
+}
+
+.box {
+    width: 200px;
+    height: 200px;
+    background-color: blue;
+    color: white;
+    font-size: 3em;
+    border: 2px solid tomato;
+}
+
+.box[alig-self] {
+    color: tomato;
+}
+
+.box:nth-child(2) {
+    align-self: flex-start;
+    flex-grow: 2;
+}
+
+.box:nth-child(3) {
+    flex-grow: 1;
+    flex-shrink: 2;
+}
