@@ -8,8 +8,9 @@
 }
 
 .box {
-    width: 200px;
-    height: 200px;
+    /* width: 200px; */
+    flex-basis: 200px; /* main-axis box length */
+    /* height: 200px; */
     background-color: blue;
     color: white;
     font-size: 3em;
@@ -21,11 +22,11 @@
 }
 
 .box:nth-child(2) {
-    align-self: flex-start;
-    flex-grow: 2;
+    /* align-self: flex-start; */
+    /* flex-grow: 2; */
 }
 
 .box:nth-child(3) {
-    flex-grow: 1;
+    /* flex-grow: 1; */
     flex-shrink: 2;
 }
