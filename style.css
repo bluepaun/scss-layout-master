@@ -30,3 +30,22 @@
     /* flex-grow: 1; */
     flex-shrink: 2;
 }
+
+.container2 {
+    height: 100vh;
+    display: grid;
+    grid-template-rows: 20px 50px;
+    grid-template-columns: 100px 100px 100px;
+    row-gap: 10px;
+    column-gap: 5px;
+    /* gap: 10px; */
+}
+
+.box2 {
+    /* width: 200px; */
+    /* height: 200px; */
+    background-color: tomato;
+    border: 1px solid teal;
+    color: white;
+    font-size: 3em;
+}
