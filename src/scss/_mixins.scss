@@ -1,0 +1,9 @@
+@mixin sexyTitle($word) {
+    font-size: 3em;
+    margin-bottom: 1em;
+    @if $word == "odd" {
+        color: wheat;
+    } @else if $word == "even" {
+        color: red;
+    }
+}

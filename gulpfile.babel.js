@@ -84,11 +84,11 @@ const webServer = () => gulp.src("build").pipe(ws({ livereload: true }));
 const watch = () => {
     gulp.watch(routes.pug.watch, pug);
     gulp.watch(routes.css.watch, styles);
-    gulp.watch(routes.img.watch, img);
+    // gulp.watch(routes.img.watch, img);
     gulp.watch(routes.js.watch, js);
 };
 
-const prepare = gulp.series([clean, img]);
+const prepare = gulp.series([clean]);
 const assets = gulp.series([pug, styles, js]);
 const posDev = gulp.parallel([webServer, watch]);
 
