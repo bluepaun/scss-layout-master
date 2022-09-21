@@ -9,6 +9,7 @@ import sass2 from "sass";
 import autoprefixer from "gulp-autoprefixer";
 import bro from "gulp-bro";
 import babelify from "babelify";
+import ghPages from "gulp-gh-pages";
 
 const sass = gulpSass(sass2);
 
@@ -49,6 +50,7 @@ const styles = () =>
         .pipe(gulp.dest(routes.css.dest));
 
 const clean = async () => await deleteSync(["build/"]);
+const cleanPublish = async () => await deleteSync([".publish"]);
 
 const pug = () => {
     return gulp
@@ -93,5 +95,8 @@ const posDev = gulp.parallel([webServer, watch]);
 // const live = gulp.parallel([watch]);
 
 // export const dev = gulp.series([prepare, assets, live]);
+const gitdeploy = () => gulp.src("build/**/*").pipe(ghPages());
 
-export const dev = gulp.series([prepare, assets, posDev]);
+export const build = gulp.series([prepare, assets]);
+export const dev = gulp.series([build, posDev]);
+export const deploy = gulp.series([build, gitdeploy, cleanPublish]);
