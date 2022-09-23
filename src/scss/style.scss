@@ -25,4 +25,9 @@ body {
     button {
         @extend %button;
     }
+    h2 {
+        @include responsive("iphone") {
+            color: yellow;
+        }
+    }
 }
