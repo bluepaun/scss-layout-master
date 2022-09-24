@@ -29,5 +29,6 @@ body {
         @include responsive("iphone") {
             color: yellow;
         }
+        @include responsive("iphone");
     }
 }
