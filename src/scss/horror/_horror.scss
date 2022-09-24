@@ -104,7 +104,15 @@ main {
             padding: 3em $movie-item-side-padding;
             display: flex;
             flex-direction: column;
-            @extend %innerShadowDown2;
+            // background: linear-gradient(#e66465, #9198e5);
+
+            background: linear-gradient(
+                to top,
+                rgba(0, 0, 0, 0.1) 2%,
+                transparent,
+                transparent,
+                transparent
+            );
             h3 {
                 font-family: "Alfa Slab One", cursive;
                 font-size: 2em;
