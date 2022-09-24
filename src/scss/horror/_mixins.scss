@@ -1,0 +1,12 @@
+@mixin mediaQueries($device) {
+    @if $device == "phone-lg" {
+        @media screen and (min-width: 600px) and (max-width: 840px) {
+            @content;
+        }
+    }
+    @if $device == "computer" {
+        @media screen and (min-width: 841px) {
+            @content;
+        }
+    }
+}

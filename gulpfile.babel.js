@@ -20,7 +20,7 @@ const routes = {
         dest: "build/",
     },
     css: {
-        watch: "src/scss/*",
+        watch: "src/scss/**/*",
         src: "src/scss/style.scss",
         dest: "build/css",
     },
@@ -97,6 +97,6 @@ const posDev = gulp.parallel([webServer, watch]);
 // export const dev = gulp.series([prepare, assets, live]);
 const gitdeploy = () => gulp.src("build/**/*").pipe(ghPages());
 
-export const build = gulp.series([prepare, assets]);
+export const build = gulp.series([prepare, img, assets]);
 export const dev = gulp.series([build, posDev]);
 export const deploy = gulp.series([build, gitdeploy, cleanPublish]);

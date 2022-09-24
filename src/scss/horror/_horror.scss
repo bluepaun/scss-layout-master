@@ -1,0 +1,277 @@
+@import url("https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=PT+Mono&display=swap");
+@import "_shadow";
+@import "_mixins";
+
+$red: #e7463c;
+$white: #f0f0f0;
+$gray: rgba(0, 0, 0, 0.6);
+
+body {
+    background-color: $red;
+    font-family: "PT Mono", monospace;
+}
+
+header {
+    background-color: $white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-betweeon;
+    padding: 5.5em 2em 2em 2em;
+    color: $red;
+    $header-margin-bottom: 1.5em;
+
+    h1 {
+        font-size: 3em;
+        text-transform: uppercase;
+        font-family: "Alfa Slab One", cursive;
+    }
+
+    .des {
+        margin-top: 2.5em;
+        h4 {
+            font-size: 1.6em;
+            margin-bottom: $header-margin-bottom;
+        }
+        p {
+            margin-bottom: $header-margin-bottom;
+            text-align: justify;
+            text-indent: -0.5em;
+        }
+        nav {
+            font-size: 0.8em;
+            color: $gray;
+            margin-bottom: $header-margin-bottom;
+            ul {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 1em;
+
+                li {
+                    border-bottom: 1px solid #000000;
+                    padding-bottom: 0.2em;
+                    cursor: pointer;
+                    opacity: 0.7;
+                    &:hover {
+                        opacity: 1;
+                    }
+                }
+            }
+        }
+        span {
+            color: rgba(0, 0, 0, 0.5);
+            font-weight: 300;
+            font-size: 0.65em;
+        }
+    }
+}
+
+main {
+    height: 100%;
+    .noti {
+        z-index: 3;
+        $colum-gap-size: 0.5em;
+        background-color: #e7473cea;
+        padding: 2.5em 2.5em;
+        display: flex;
+        flex-wrap: wrap;
+        column-gap: $colum-gap-size;
+        row-gap: 0.4em;
+        justify-content: center;
+        align-items: center;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        position: sticky;
+        top: 0;
+        span {
+            color: white;
+            &:last-child {
+                transform: translateX(-$colum-gap-size);
+            }
+        }
+        a {
+            padding: 0.2em 0em;
+            border-bottom: 1px solid black;
+            &:hover {
+                color: white;
+                border-color: white;
+            }
+        }
+    }
+    .movie-list {
+        $movie-vote-bg-color: #d7271b;
+        color: white;
+        li {
+            $movie-item-side-padding: 2.5em;
+            padding: 3em $movie-item-side-padding;
+            display: flex;
+            flex-direction: column;
+            @extend %innerShadowDown2;
+            h3 {
+                font-family: "Alfa Slab One", cursive;
+                font-size: 2em;
+                margin-bottom: 0.8rem;
+                position: relative;
+
+                &::before {
+                    content: "#";
+                    position: absolute;
+                    top: 0;
+                    left: -1em;
+                    color: rgba(0, 0, 0, 0.2);
+                    opacity: 0;
+                    transition: opacity 300ms ease-in;
+                }
+
+                &:hover::before {
+                    opacity: 1;
+                }
+            }
+            > span {
+                font-size: 0.8em;
+                margin-bottom: 2rem;
+            }
+            .movie-container {
+                position: relative;
+                padding: 0;
+                display: flex;
+                margin-bottom: 3rem;
+                @extend %shadow5;
+                .ranking {
+                    position: absolute;
+                    left: -0.5em;
+                    top: 2em;
+                    background-color: $movie-vote-bg-color;
+                    padding: 0.5em;
+                    display: flex;
+                    @extend %shadow;
+                    sup {
+                        font-size: 0.5em;
+                    }
+                }
+                img {
+                    width: 100%;
+                    height: auto;
+                    object-fit: cover;
+                    margin: 0px;
+                }
+                .vote {
+                    position: absolute;
+                    top: 0;
+                    right: -$movie-item-side-padding;
+                    width: $movie-item-side-padding;
+                    height: 3 * $movie-item-side-padding;
+                    display: grid;
+                    grid-template-columns: 1fr;
+                    grid-template-rows: repeat(3, 1fr);
+                    background-color: $movie-vote-bg-color;
+                    span {
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                    }
+                    button {
+                        background-color: inherit;
+                        color: white;
+                        position: relative;
+                        &::before {
+                            background-color: inherit;
+                            position: absolute;
+                            top: 0;
+                            right: 100%;
+                            height: 100%;
+                            white-space: nowrap;
+                            padding: 0em 1em;
+                            font-size: 1.2em;
+                            display: flex;
+                            align-items: center;
+                            opacity: 0;
+                            transform: translateX(20px);
+                            transition: opacity 200ms ease-in-out,
+                                transform 200ms ease-in-out;
+                            pointer-events: none;
+                        }
+
+                        &:hover::before {
+                            transform: none;
+                            opacity: 1;
+                        }
+                        &:first-child:hover {
+                            @extend %innerShadowTop;
+                        }
+                        &:last-child:hover {
+                            @extend %innerShadowDown;
+                        }
+                        &:first-child::before {
+                            @extend %innerShadowTop;
+                            content: "Vote up";
+                        }
+                        &:last-child::before {
+                            @extend %innerShadowDown;
+                            content: "Vote down";
+                        }
+                    }
+                }
+            }
+            .movie-thought {
+                p {
+                    line-height: 1.5em;
+                    &:nth-child(n + 2) {
+                        text-indent: 2em;
+                    }
+                }
+                .thought-article {
+                    margin-top: 1em;
+                    display: flex;
+                    justify-content: space-between;
+                    div {
+                        color: rgba(0, 0, 0, 0.5);
+                    }
+                }
+            }
+            .commet-box {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                color: rgba(0, 0, 0, 0.5);
+                margin-top: 5rem;
+                button {
+                    background-color: inherit;
+                    color: inherit;
+                    font-size: inherit;
+                    border-bottom: 2px solid rgba(0, 0, 0, 0.5);
+                    padding: 0.5em 0;
+                }
+            }
+        }
+    }
+}
+
+@include mediaQueries("phone-lg") {
+    header {
+        .title {
+            h1 {
+                font-size: 5em;
+            }
+        }
+    }
+    main {
+        .movie-list {
+            li {
+                padding: 3em 3.5em;
+            }
+        }
+    }
+}
+
+@include mediaQueries("computer") {
+    $header-width: 25rem;
+    header {
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: $header-width;
+        height: 100vh;
+    }
+    main {
+        margin-left: $header-width;
+    }
+}
