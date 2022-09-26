@@ -7,10 +7,11 @@
         "dev": "gulp dev",
         "clean": "rm -R build/*",
         "build": "gulp build",
-        "deploy": "gulp deploy"
+        "deploy": "gulp deploy",
+        "challenge": "gulp challenge"
     },
     "browserslist": [
-        "last 2 versions"
+        "defaults"
     ],
     "devDependencies": {
         "@babel/core": "^7.18.9",

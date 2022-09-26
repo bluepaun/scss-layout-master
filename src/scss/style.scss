@@ -3,7 +3,8 @@
 @import "_mixins";
 @import "_button";
 
-@import "horror/_horror";
+// @import "horror/_horror";
+@import "paintbox/_paintbox";
 
 .container {
     h1 {
@@ -30,4 +31,9 @@
         }
         @include responsive("iphone");
     }
+    display: grid;
+    justify-items: center;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
 }

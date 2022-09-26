@@ -13,6 +13,8 @@ import ghPages from "gulp-gh-pages";
 
 const sass = gulpSass(sass2);
 
+const todayChallenge = "challenge/22-09-26";
+
 const routes = {
     pug: {
         watch: "src/**/*.pug",
@@ -33,6 +35,16 @@ const routes = {
         watch: "src/js/**/*",
         src: "src/js/main.js",
         dest: "build/js",
+    },
+    cPug: {
+        watch: `${todayChallenge}/**/*.pug`,
+        src: `${todayChallenge}/*.pug`,
+        dest: `${todayChallenge}/build`,
+    },
+    cCss: {
+        watch: `${todayChallenge}/scss/**/*`,
+        src: `${todayChallenge}/scss/style.scss`,
+        dest: `${todayChallenge}/build/css`,
     },
 };
 
@@ -92,11 +104,36 @@ const prepare = gulp.series([clean]);
 const assets = gulp.series([pug, styles, js]);
 const posDev = gulp.parallel([webServer, watch]);
 
-// const live = gulp.parallel([watch]);
-
-// export const dev = gulp.series([prepare, assets, live]);
 const gitdeploy = () => gulp.src("build/**/*").pipe(ghPages());
 
 export const build = gulp.series([prepare, img, assets]);
 export const dev = gulp.series([build, posDev]);
 export const deploy = gulp.series([build, gitdeploy, cleanPublish]);
+
+const cClean = async () => await deleteSync([`${todayChallenge}/build/`]);
+const cPug = () =>
+    gulp
+        .src(routes.cPug.src)
+        .pipe(gpug({ pretty: true }))
+        .pipe(gulp.dest(routes.cPug.dest));
+const cCss = () =>
+    gulp
+        .src(routes.cCss.src)
+        .pipe(sass().on("error", sass.logError))
+        .pipe(
+            autoprefixer({
+                flexbox: true,
+                grid: "autoplace",
+            })
+        )
+        .pipe(gulp.dest(routes.cCss.dest));
+const cWebServer = () =>
+    gulp.src(`${todayChallenge}/build`).pipe(ws({ livereload: true }));
+const cWatch = () => {
+    gulp.watch(routes.cPug.watch, cPug);
+    gulp.watch(routes.cCss.watch, cCss);
+};
+
+const cBuild = gulp.series([cClean, cPug, cCss]);
+
+export const challenge = gulp.series([cBuild, cWebServer, cWatch]);
