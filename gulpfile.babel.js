@@ -13,7 +13,7 @@ import ghPages from "gulp-gh-pages";
 
 const sass = gulpSass(sass2);
 
-const todayChallenge = "challenge/22-09-26";
+const todayChallenge = "challenge/22-09-27";
 
 const routes = {
     pug: {

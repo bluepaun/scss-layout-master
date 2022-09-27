@@ -1,0 +1,13 @@
+@mixin icon($size, $color) {
+    width: $size;
+    height: $size;
+    overflow: hidden;
+    img {
+        display: inline;
+        margin-left: -$size;
+        width: $size;
+        height: $size;
+        object-fit: cover;
+        filter: drop-shadow($size 0 $color);
+    }
+}

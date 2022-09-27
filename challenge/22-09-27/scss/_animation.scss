@@ -1,0 +1,12 @@
+@keyframes slidingLeft {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+%aniSlideLeft {
+    animation: slidingLeft 20s linear infinite;
+}
