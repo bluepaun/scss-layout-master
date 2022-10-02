@@ -1,0 +1,244 @@
+@import url("https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css");
+@import "_variable";
+
+* {
+    box-sizing: border-box;
+}
+
+input,
+button {
+    border: none;
+    outline: none;
+    color: inherit;
+    font-family: inherit;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+        Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+    width: 100%;
+    height: 100vh;
+}
+
+body {
+    display: grid;
+    grid-template-columns: 3fr 3em 2fr;
+}
+
+.list {
+    background-color: $orange;
+    padding: 0.3em;
+    height: 100%;
+    overflow: auto;
+    ul {
+        padding: 0.1em;
+        background-color: $red;
+        display: flex;
+        flex-direction: column;
+        gap: 0.1em;
+        li {
+            display: grid;
+            gap: 0.1em;
+            height: 7em;
+            grid-template-columns: 2em 1fr 12em;
+            grid-template-rows: repeat(2, 1fr);
+            color: $red;
+            grid-template-areas:
+                "type title genres"
+                "type title button";
+            transition: background-color 300ms ease-in-out,
+                color 300ms ease-in-out;
+            position: relative;
+
+            &::after {
+                content: "";
+                position: absolute;
+                top: -0.1em;
+                left: -0.1em;
+                display: block;
+                width: 100%;
+                height: 100%;
+                border: 0.1em solid white;
+                opacity: 0;
+                transition: opacity 300ms ease-in-out;
+            }
+
+            &:hover {
+                background-color: white;
+                color: white;
+                .present button {
+                    background-color: white;
+                }
+                &::after {
+                    visibility: inherit;
+                    opacity: 1;
+                }
+            }
+
+            & > * {
+                background-color: $orange;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                z-index: 2;
+            }
+
+            h5 {
+                grid-area: type;
+                transform: rotate(180deg);
+                writing-mode: vertical-lr;
+                letter-spacing: -0.1em;
+            }
+
+            h1 {
+                padding-left: 1rem;
+                overflow: hidden;
+                font-size: 5em;
+                grid-area: title;
+                justify-content: flex-start;
+                font-weight: 600;
+                white-space: nowrap;
+            }
+
+            .geners {
+                grid-area: genres;
+                padding: 0 1em;
+                span {
+                    display: inline;
+                    letter-spacing: -0.1em;
+                }
+            }
+
+            .present {
+                grid-area: button;
+                padding: 0.6em 0.7em;
+
+                button {
+                    background-color: $red;
+                    width: 100%;
+                    height: 100%;
+                    color: $orange;
+                    border-radius: 4em;
+                    transition: background-color 300ms ease-in-out;
+                }
+            }
+        }
+    }
+}
+
+.benner {
+    position: relative;
+    display: grid;
+    grid-template-rows: repeat(2, 1fr);
+
+    .company,
+    .copyright {
+        display: flex;
+        padding-top: 0.5rem;
+        h2 {
+            writing-mode: vertical-rl;
+            font-size: 1.5em;
+        }
+    }
+
+    .company {
+        justify-content: center;
+        background-color: $neon-pink;
+    }
+
+    .copyright {
+        background-color: $blue;
+        flex-direction: column;
+        align-items: center;
+        transform: rotate(180deg);
+        & > img {
+            width: 1em;
+            height: 1em;
+            transform: rotate(90deg);
+        }
+        h2 {
+            padding-top: 0.2rem;
+        }
+    }
+
+    & > img {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 100%;
+        z-index: 2;
+        filter: drop-shadow(0 0 1px white);
+    }
+}
+
+.menu {
+    background-color: $red;
+    padding: 0 1rem;
+    overflow: auto;
+    .filter {
+        position: sticky;
+        top: 0;
+        background-color: $red;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 1.6em;
+        padding: 0.5rem 0 2rem 0;
+        li {
+            display: flex;
+            align-items: center;
+            input {
+                opacity: 0;
+                height: 0;
+                width: 0;
+                + label {
+                    position: relative;
+                    cursor: pointer;
+                    padding-left: 1em;
+                    &::before {
+                        content: "";
+                        position: absolute;
+                        width: 0.6em;
+                        height: 0.6em;
+                        border: 2px solid black;
+                        border-radius: 50%;
+                        top: 50%;
+                        transform: translateY(-50%);
+                        left: 0;
+                    }
+                }
+                &:checked {
+                    + label {
+                        &::before {
+                            background-color: black;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .team {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1em;
+        li {
+            border-top: 2px solid black;
+            padding-top: 0.7em;
+            padding-bottom: 2em;
+            h5 {
+                font-size: 1.5em;
+                font-weight: 600;
+                padding-bottom: 0.1em;
+            }
+            p {
+                font-size: 0.8em;
+                font-weight: 600;
+                letter-spacing: -0.1em;
+            }
+        }
+    }
+}

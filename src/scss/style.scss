@@ -1,39 +1,39 @@
 @import "_reset";
-@import "_variable";
-@import "_mixins";
-@import "_button";
+// @import "_variable";
+// @import "_mixins";
+// @import "_button";
 
 // @import "horror/_horror";
 @import "paintbox/_paintbox";
 
-.container {
-    h1 {
-        margin-bottom: 2em;
+// .container {
+//     h1 {
+//         margin-bottom: 2em;
 
-        &:nth-child(odd) {
-            @include sexyTitle("odd");
-        }
-        &:nth-child(even) {
-            @include sexyTitle("even");
-        }
-    }
-    a {
-        @extend %button;
-        text-decoration: none;
-    }
+//         &:nth-child(odd) {
+//             @include sexyTitle("odd");
+//         }
+//         &:nth-child(even) {
+//             @include sexyTitle("even");
+//         }
+//     }
+//     a {
+//         @extend %button;
+//         text-decoration: none;
+//     }
 
-    button {
-        @extend %button;
-    }
-    h2 {
-        @include responsive("iphone") {
-            color: yellow;
-        }
-        @include responsive("iphone");
-    }
-    display: grid;
-    justify-items: center;
-    justify-content: center;
-    align-items: center;
-    align-content: center;
-}
+//     button {
+//         @extend %button;
+//     }
+//     h2 {
+//         @include responsive("iphone") {
+//             color: yellow;
+//         }
+//         @include responsive("iphone");
+//     }
+//     display: grid;
+//     justify-items: center;
+//     justify-content: center;
+//     align-items: center;
+//     align-content: center;
+// }
